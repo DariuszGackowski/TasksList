@@ -1,0 +1,24 @@
+﻿<Window x:Class="TasksList.Windows.CustomMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TasksList.Windows"
+        mc:Ignorable="d"
+        Title="CustomMessageBox" Height="150" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" 
+        Background="Transparent" >
+    <Grid>
+        <Border Background="#7ED6D9" BorderThickness="2" BorderBrush="#3FA2A7" CornerRadius="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="{Binding Message}" Style="{StaticResource monthTextBlock}" TextAlignment="Center" FontWeight="Bold" FontSize="16" Margin="10,50,10,45"/>
+
+                <Button Content="OK" Width="80" Height="25" Style="{StaticResource messageButton}"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="OKButtonClick" Margin="0,0,20,20"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

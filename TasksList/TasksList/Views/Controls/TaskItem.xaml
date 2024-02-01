@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="TasksList.Controls.TaskItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TasksList.Controls"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             Name="taskItem">
+
+    <Grid Margin="30 10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Button Click="CheckButtonClick" Style="{StaticResource button}" Width="20" Height="20" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
+            <fa:ImageAwesome Icon="{Binding Path=Icon,ElementName=taskItem}" Foreground="#f1f1f1" Margin="0 3 0 0"/>
+        </Button>
+        <StackPanel Grid.Column="1" Margin="10 0">
+            <TextBlock FontSize="16" Foreground="{Binding Path=Color,ElementName=taskItem}" Text="{Binding Path=Description,ElementName=taskItem}"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                <Button Click ="MuteButtonClick" Style="{StaticResource button}" Grid.Column="2" Width="12" Height="12" Background="Transparent" BorderBrush="Transparent">
+                    <fa:ImageAwesome Icon="{Binding Path=IconBell, ElementName=taskItem}" Foreground="{Binding Path=Color, ElementName=taskItem}" />
+                </Button>
+
+                <TextBlock FontSize="12" Foreground="{Binding Path=Color,ElementName=taskItem}" Text="{Binding Path=Time,ElementName=taskItem}" Margin="8 0 0 0"/>
+            </StackPanel>
+        </StackPanel>
+
+        <ToggleButton Name="btnMenu" Grid.Column="2">
+            <ToggleButton.Template>
+                <ControlTemplate TargetType="ToggleButton">
+                    <fa:ImageAwesome Icon="EllipsisV" Width="16" Height="16" Foreground="#f1f1f1">
+                        <fa:ImageAwesome.Style>
+                            <Style TargetType="fa:ImageAwesome">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="RenderTransform">
+                                            <Setter.Value>
+                                                <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </fa:ImageAwesome.Style>
+                    </fa:ImageAwesome>
+                </ControlTemplate>
+            </ToggleButton.Template>
+        </ToggleButton>
+
+        <Popup IsOpen="{Binding IsChecked, ElementName=btnMenu}" AllowsTransparency="True" StaysOpen="False" PlacementTarget="{Binding ElementName=btnMenu}" Placement="Left">
+            <Border Background="White" CornerRadius="5" Padding="0 4">
+                <StackPanel>
+
+
+                    <Button Click="CheckButtonClick">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="White" />
+
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}" Padding="10 5" BorderThickness="0" Width="140">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#e9e9e9" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="Check" Width="13" Height="13" Foreground="#666666" Margin="5 0 20 0"/>
+                            <TextBlock Text="Check" Foreground="#666666" FontSize="14"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="MuteButtonClick">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="White" />
+
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}" Padding="10 5" BorderThickness="0" Width="140">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#e9e9e9" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="BellSlash" Width="13" Height="13" Foreground="#666666" Margin="5 0 20 0"/>
+                            <TextBlock Text="Mute" Foreground="#666666" FontSize="14"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="EditButtonClick">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="White" />
+
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}" Padding="10 5" BorderThickness="0" Width="140">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#e9e9e9" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="Pencil" Width="13" Height="13" Foreground="#666666" Margin="5 0 20 0"/>
+                            <TextBlock Text="Edit" Foreground="#666666" FontSize="14"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="DeleteButtonClick">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="White" />
+
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}" Padding="10 5" BorderThickness="0" Width="140">
+                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#e9e9e9" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <StackPanel Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="Trash" Width="13" Height="13" Foreground="#666666" Margin="5 0 20 0"/>
+                            <TextBlock Text="Delete" Foreground="#666666" FontSize="14"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>
